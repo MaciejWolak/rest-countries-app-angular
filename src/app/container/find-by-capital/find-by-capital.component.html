@@ -1,0 +1,31 @@
+<div class="row py-xl-5">
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-header text-center">Find country by capital name</div>
+      <div class="card-body">
+        <form [formGroup]="findCountryForm">
+          <div class="form-group">
+            <input type="text"
+                   formControlName="capital"
+                   class=" form-control"
+                   placeholder="capital name"
+                   [ngClass]="{ 'is-invalid': findCountryForm.get('capital').touched
+                && findCountryForm.get('capital').invalid}"
+                   pattern="[a-zA-Z ]*">
+            <span class="invalid-feedback"
+                  *ngIf="findCountryForm.get('capital').hasError('required')">
+              Name can't be blank.
+              </span>
+            <button (click)="getCountryByCapital()" type="button"
+                    class="btn btn-primary btn-block mt-3"
+                    [disabled]="findCountryForm.invalid">Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <app-results *ngFor="let country of countryDetails" [country]="country"></app-results>
+</div>

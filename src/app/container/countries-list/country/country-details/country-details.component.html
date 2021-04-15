@@ -1,0 +1,32 @@
+<p class="text-center">
+  <a routerLink="/">
+    Go Back to Home
+  </a>
+</p>
+<div *ngFor="let country of countryDetails">
+  <div class="card mt-3">
+    <div class="card-header">
+      <h1>{{ country.name }}</h1>
+    </div>
+    <div class="rightSide__wrapper card-body">
+      <div>
+        <img [src]="country.flag" [alt]="country.name" width="100" class="mb-3">
+      </div>
+      <p><strong>Capital:</strong> {{ country.capital }}</p>
+      <p><strong>Domain:</strong> {{ country.topLevelDomain }}</p>
+      <p><strong>Region:</strong> {{ country.region }}</p>
+      <p><strong>Sub Region:</strong> {{ country.subregion }}</p>
+      <p><strong>Population:</strong> {{ country.population }}</p>
+      <p><strong>Area:</strong> {{ country.area }}</p>
+      <p><strong>Timezones:</strong> {{ country.timezones}}</p>
+      <p><strong>Borders:</strong> {{ country.borders}}</p>
+      <p><strong>Currencies:</strong>
+        <span *ngFor="let currency of country.currencies">{{ currency.name}} : {{currency.code}}
+          : {{currency.symbol}}</span>
+      </p>
+      <p><strong>Languages:</strong>
+        <span *ngFor="let language of country.languages"> {{ language.name }}</span>
+      </p>
+    </div>
+  </div>
+</div>

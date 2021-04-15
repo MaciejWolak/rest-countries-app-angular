@@ -1,0 +1,40 @@
+<div class="row py-xl-5">
+  <div class="col-md-4 offset-md-4">
+    <div class="card">
+      <div class="card-header text-center">
+        Find country by currency code (ISO 4217)
+      </div>
+      <div class="card-body">
+        <form [formGroup]="findCountryForm">
+          <div class="form-group">
+            <input
+              maxlength="3"
+              type="text"
+              formControlName="currencies"
+              class=" form-control"
+              placeholder="currency name"
+              [ngClass]="{ 'is-invalid': findCountryForm.get('currencies').touched
+              && findCountryForm.get('currencies').invalid}"
+              pattern="[a-zA-Z]{3,3}"
+            />
+            <span class="invalid-feedback">
+              <span *ngIf="findCountryForm.get('currencies').hasError('required')">
+                Currency can't be blank.
+              </span>
+            </span>
+            <button (click)="getCountryByCurrency()" type="button"
+                    class="btn btn-primary btn-block mt-3"
+                    [disabled]="findCountryForm.invalid">
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <app-results *ngFor="let country of countryDetails"
+               [country]="country">
+  </app-results>
+</div>
